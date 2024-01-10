@@ -2,6 +2,7 @@
 """This is a module for the base model."""
 from datetime import datetime
 from uuid import uuid4
+from models import storage
 
 
 class BaseModel:
@@ -24,6 +25,7 @@ class BaseModel:
             self.id = str(uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
+            storage.new(self)
 
     def __str__(self):
         """Convert object to string."""
@@ -32,10 +34,11 @@ class BaseModel:
     def save(self):
         """Update object."""
         self.updated_at = datetime.now()
+        storage.save()
 
     def to_dict(self):
         """Convert object to dictionary."""
-        dict_obj = self.__dict__
+        dict_obj = self.__dict__.copy()
         dict_obj['__class__'] = 'BaseModel'
         dict_obj['created_at'] = self.created_at.isoformat()
         dict_obj['updated_at'] = self.updated_at.isoformat()
