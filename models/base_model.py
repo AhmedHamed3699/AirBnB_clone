@@ -29,7 +29,7 @@ class BaseModel:
 
     def __str__(self):
         """Convert object to string."""
-        return f"[BaseModel] ({self.id}) {self.__dict__}"
+        return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
     def save(self):
         """Update object."""
@@ -39,7 +39,7 @@ class BaseModel:
     def to_dict(self):
         """Convert object to dictionary."""
         dict_obj = self.__dict__.copy()
-        dict_obj['__class__'] = 'BaseModel'
+        dict_obj['__class__'] = str(self.__class__.__name__)
         dict_obj['created_at'] = self.created_at.isoformat()
         dict_obj['updated_at'] = self.updated_at.isoformat()
         return dict_obj
