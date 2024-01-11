@@ -3,6 +3,11 @@
 import json
 from models.base_model import BaseModel
 from models.user import User
+from models.state import State
+from models.city import City
+from models.place import Place
+from models.amenity import Amenity
+from models.review import Review
 
 
 class FileStorage:
@@ -47,6 +52,16 @@ class FileStorage:
                     all_objects[key] = BaseModel(**value)
                 elif value['__class__'] == 'User':
                     all_objects[key] = User(**value)
+                elif value['__class__'] == 'State':
+                    all_objects[key] = State(**value)
+                elif value['__class__'] == 'City':
+                    all_objects[key] = City(**value)
+                elif value['__class__'] == 'Place':
+                    all_objects[key] = Place(**value)
+                elif value['__class__'] == 'Amenity':
+                    all_objects[key] = Amenity(**value)
+                elif value['__class__'] == 'Review':
+                    all_objects[key] = Review(**value)
             FileStorage.__objects = all_objects
         except FileNotFoundError:
             return
