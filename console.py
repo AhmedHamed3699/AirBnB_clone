@@ -44,10 +44,10 @@ class HBNBCommand(cmd.Cmd):
         Usage: create <class_name>
         """
         args = line.split()
-        if len(args) == 0:
-            print("** class name missing **")
-        elif len(args) > 1:
+        if len(args) > 1:
             print("** you can create at most one instance **")
+        elif len(args) == 0:
+            print("** class name missing **")
         else:
             args = args[0]
             new_obj = None
@@ -78,10 +78,10 @@ class HBNBCommand(cmd.Cmd):
         Usage: show <class_name> <instance_id>
         """
         args = line.split()
-        if len(args) == 0:
-            print("** class name missing **")
-        elif len(args) > 2:
+        if len(args) > 2:
             print("** you can only give class name and instance id **")
+        elif len(args) == 0:
+            print("** class name missing **")
         elif args[0] not in available_classes:
             print("** class doesn't exist **")
         elif len(args) < 2:
@@ -119,6 +119,62 @@ class HBNBCommand(cmd.Cmd):
                             ans.append(str(obj))
             if ans is not None:
                 print(ans)
+
+    def do_destroy(self, line):
+        """
+        Delete an instance based on the class name and id.
+
+        Usage: destroy <class_name> <instance_id>
+        """
+        args = line.split()
+        if len(args) > 2:
+            print("** you can only give class name and instance id **")
+        elif len(args) == 0:
+            print("** class name missing **")
+        elif args[0] not in available_classes:
+            print("** class doesn't exist **")
+        elif len(args) < 2:
+            print("** instance id missing **")
+        else:
+            key = str(args[0]) + '.' + str(args[1])
+            if not storage.del_obj(key):
+                print("** no instance found **")
+
+    def do_update(self, line):
+        """
+        Update an instance based on the class name and id.
+
+        Usage: update <class_name> <instance_id> <attr_name> "<attr_value>"
+        """
+        args = line.split()
+        if len(args) == 0:
+            print("** class name missing **")
+        elif args[0] not in available_classes:
+            print("** class doesn't exist **")
+        elif len(args) < 2:
+            print("** instance id missing **")
+        else:
+            key = str(args[0]) + '.' + str(args[1])
+            obj = storage.get_obj(key)
+            if obj is None:
+                print("** no instance found **")
+            else:
+                if len(args) < 3:
+                    print("** attribute name missing **")
+                elif len(args) < 4:
+                    print("** value missing **")
+                else:
+                    curr_val = getattr(obj, args[2], None)
+                    new_val = args[3]
+                    if curr_val is not None:
+                        if isinstance(curr_val, int):
+                            new_val = int(new_val)
+                        if isinstance(curr_val, float):
+                            new_val = float(new_val)
+                        if isinstance(curr_val, str):
+                            new_val = str(new_val)
+                    setattr(obj, args[2], new_val)
+                    obj.save()
 
     def emptyline(self):
         """Do nothing."""

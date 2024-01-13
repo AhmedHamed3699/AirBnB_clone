@@ -29,6 +29,14 @@ class FileStorage:
         """Get obj of that key."""
         return FileStorage.__objects.get(key)
 
+    def del_obj(self, key):
+        """Delete obj of that key."""
+        ret = FileStorage.__objects.pop(key, False)
+        if ret:
+            self.save()
+            return True
+        return False
+
     def save(self):
         """Serialize objects to the JSON file."""
         all_objects = FileStorage.__objects.copy()
