@@ -11,7 +11,7 @@ class BaseModel:
     def __init__(self, *_args, **kwargs):
         """Construct a new object."""
         if kwargs:
-            kwargs.pop('__class__')
+            kwargs.pop('__class__', False)
             iso_format = kwargs['created_at']
             datetime_format = datetime.strptime(
                 iso_format, "%Y-%m-%dT%H:%M:%S.%f")
