@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """This is a module for the console."""
 import cmd
+import re
 from models import storage
 from models.base_model import BaseModel
 from models.user import User
@@ -19,6 +20,57 @@ class HBNBCommand(cmd.Cmd):
     """A class for command interpreter."""
 
     prompt = '(hbnb) '
+
+    def parse(self, line):
+        """Parse input."""
+        pattern = r'(?P<class_name>\w+)\.(?P<method>\w+)\((?P<args>.*?)\)'
+        match = re.match(pattern, line)
+
+        if match:
+            class_name = match.group('class_name')
+            method = match.group('method')
+            args_str = match.group('args')
+            args = ' '.join([arg.strip() for arg in args_str.split(',')])
+
+            return class_name, method, args
+
+        return None
+
+    def default(self, line):
+        """Execute if input is invalid."""
+        to_default = {
+            "all": self.do_all,
+            "count": self.count,
+            "show": self.do_show,
+            "destroy": self.do_destroy,
+            "update": self.do_update
+        }
+
+        result = self.parse(line)
+        if result:
+            class_name, method, args = result
+            if class_name and method:
+                func = to_default.get(method, None)
+                if func:
+                    func(str(class_name) + ' ' + str(args))
+
+    def count(self, line):
+        """Count all instances."""
+        args = line.split()
+        objects = storage.all()
+        if len(args) == 0:
+            ans = len(objects.values())
+        else:
+            if args[0] not in available_classes:
+                print("** class doesn't exist **")
+                ans = None
+            else:
+                ans = 0
+                for obj in objects.values():
+                    if obj.__class__.__name__ == args[0]:
+                        ans += 1
+        if ans:
+            print(ans)
 
     def do_quit(self, _line):
         """
