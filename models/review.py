@@ -12,4 +12,4 @@ class Review(BaseModel):
 
     def __init__(self, *_args, **kwargs):
         """Construct a new object."""
-        super().__init__(kwargs)
+        super().__init__(**kwargs)

@@ -77,3 +77,6 @@ class FileStorage:
             FileStorage.__objects = all_objects
         except FileNotFoundError:
             return
+        except json.decoder.JSONDecodeError:
+            print("** can't reload data, due to corrupt json file **")
+            return
