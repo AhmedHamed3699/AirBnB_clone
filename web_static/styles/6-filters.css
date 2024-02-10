@@ -40,6 +40,7 @@
 .filter_header h4 {
   margin: 0;
   font-weight: 400;
+  font-size: 14px;
 }
 
 .popover {
@@ -57,6 +58,7 @@
 .popover h2 {
   margin: 0;
   padding: 5px 0px 5px 25px;
+  font-size: 16px;
 }
 
 ul {
@@ -68,7 +70,7 @@ li {
   padding-left: 50px;
 }
 
-.filter_header:hover + .popover {
+.filter_header:hover+.popover {
   display: block;
 }
 
