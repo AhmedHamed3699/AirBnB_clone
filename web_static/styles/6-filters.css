@@ -7,7 +7,7 @@
   border-radius: 4px;
 }
 
-.locations {
+.filters .locations {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -16,7 +16,7 @@
   border-right: 1px solid #dddddd;
 }
 
-.amenities {
+.filters .amenities {
   position: absolute;
   left: 25%;
   top: 50%;
@@ -55,19 +55,20 @@
   border-radius: 4px;
 }
 
-.popover h2 {
-  margin: 0;
-  padding: 5px 0px 5px 25px;
-  font-size: 16px;
-}
-
 ul {
   list-style-type: none;
   padding: 0;
 }
 
-li {
+.locations li ul li,
+.amenities li {
   padding-left: 50px;
+}
+
+.popover h2 {
+  margin: 0;
+  padding: 5px 0px 5px 25px;
+  font-size: 16px;
 }
 
 .filter_header:hover+.popover {

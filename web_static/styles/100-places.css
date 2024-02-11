@@ -1,0 +1,149 @@
+.places .article-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.places h1 {
+  text-align: left;
+  font-size: 30px;
+  margin-left: 10px;
+}
+
+article {
+  position: relative;
+  width: 390px;
+  padding: 20px;
+  margin: 20px;
+  border: 1px solid #ff5a5f;
+  border-radius: 4px;
+  grid-column: auto;
+}
+
+article h2 {
+  font-size: 30px;
+  text-align: center;
+  margin: 0;
+  margin-bottom: 60px;
+}
+
+.price_by_night {
+  position: absolute;
+  top: 0%;
+  right: 0%;
+  color: #ff5a5f;
+  font-size: 30px;
+  min-width: 60px;
+  height: 60px;
+  line-height: 60px;
+  white-space: nowrap;
+  border: #ff5a5f solid 4px;
+  border-radius: 100%;
+  text-align: center;
+  padding: 8px;
+  margin: 20px;
+}
+
+.information {
+  height: 80px;
+  border-block: #dddddd solid 1px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.max_guest,
+.number_rooms,
+.number_bathrooms {
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 10px 0px;
+}
+
+.max_guest .icon {
+  background-image: url(../images/icon_group.png);
+}
+
+.number_rooms .icon {
+  background-image: url(../images/icon_bed.png);
+}
+
+.number_bathrooms .icon {
+  background-image: url(../images/icon_bath.png);
+}
+
+.max_guest .icon,
+.number_rooms .icon,
+.number_bathrooms .icon {
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 50px;
+  height: 50px;
+  margin: auto;
+}
+
+.user {
+  padding: 8px 0px;
+}
+
+.places .amenities,
+.places .reviews {
+  margin-top: 40px;
+}
+
+.places .amenities h2,
+.places .reviews h2 {
+  font-size: 16px;
+  border-bottom: #dddddd solid 1px;
+  text-align: left;
+  margin: 0;
+}
+
+.pets,
+.wifi,
+.tv {
+  padding: 5px 0px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.pets .icon {
+  background-image: url(../images/icon_pets.png);
+}
+
+.wifi .icon {
+  background-image: url(../images/icon_wifi.png);
+}
+
+.tv .icon {
+  background-image: url(../images/icon_tv.png);
+}
+
+.pets .icon,
+.wifi .icon,
+.tv .icon {
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 25px;
+  height: 25px;
+  margin-right: 15px;
+}
+
+.reviews li {
+  margin: 0;
+  padding: 0;
+}
+
+.reviews li h3 {
+  font-size: 14px;
+  margin: 0 0 5px 0;
+}
+
+.reviews li p {
+  font-size: 12px;
+  margin: 0 0 15px 0;
+}
